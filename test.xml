@@ -43,7 +43,8 @@
         var matchList = document.createElement('UL');
         var listItem;
         var extractedText;
-
+        console.log("ba3");
+        document.body.appendChild(document.createElement('UL'));
         <!-- Iterate through the array and display output for each match. -->
         for (var match in matches) {
           for (var key in matches[match]) {
