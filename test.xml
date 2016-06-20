@@ -13,8 +13,18 @@
 <![CDATA[
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 <script type="text/javascript">
-console.log(matches);
-console.log('wrya3')
+ var matchList = document.createElement('UL');
+        var listItem;
+        var extractedText;
+        console.log("ba3");
+
+
+            listItem = document.createElement('LI');
+            extractedText = "ballalalalallalalalala";
+            listItem.appendChild(extractedText);
+            matchList.appendChild(listItem);
+                    document.body.appendChild(matchList);
+        gadgets.window.adjustHeight(100);
 //some code
 
 </script>
