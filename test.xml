@@ -1,33 +1,44 @@
-<!--
- From https://developers.google.com/gmail/contextual_gadgets#hello_world_example_code 
--->
-
+<?xml version="1.0" encoding="UTF-8"?>
 <Module>
-<ModulePrefs title="Create issue" description="Create issue from email body" height="20" author="xxx xxx" author_email="xxx.xxx@example.cz" author_location="Prague, Czech Republic">
-<Require feature="dynamic-height"/>
-<Require feature="google.contentmatch">
-<Param name="extractors">http://someurl.com/MyExtractor.xml</Param>
-</Require>
-</ModulePrefs>
-<Content type="html" view="card">
-<![CDATA[
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-<script type="text/javascript">
- var matchList = document.createElement('UL');
+  <ModulePrefs title="In Gadget"
+    description="In Gadget"
+    height="220"
+    author="In Gadget Software"
+    author_email="info@InGadget.com"
+    author_location="In Gadget, Earth">
+
+    <!-- This one is not specific to Gmail contextual gadgets. -->
+    <Require feature="dynamic-height"/>
+
+    <Require feature="google.contentmatch">
+      <Param name="extractors">google.com:SenderEmailExtractor, google.com:RawSubjectExtractor</Param>
+    </Require>
+
+  </ModulePrefs>
+
+  <Content type="html" view="card">
+    <![CDATA[
+      <!-- Start with Single Sign-On -->
+      <script type="text/javascript">
+
+        <!-- Fetch the array of content matches. -->
+        matches = google.contentmatch.getContentMatches();
+        var matchList = document.createElement('UL');
         var listItem;
         var extractedText;
-        console.log("ba3");
 
-
+        <!-- Iterate through the array and display output for each match. -->
+        for (var match in matches) {
+          for (var key in matches[match]) {
             listItem = document.createElement('LI');
-            extractedText = "ballalalalallalalalala";
+            extractedText = document.createTextNode(key + ": " + matches[match][key]);
             listItem.appendChild(extractedText);
             matchList.appendChild(listItem);
-                    document.body.appendChild(matchList);
+          }
+        }
+        document.body.appendChild(matchList);
         gadgets.window.adjustHeight(100);
-//some code
-
-</script>
-]]>
-</Content>
+      </script>
+    ]]>
+  </Content>
 </Module>
